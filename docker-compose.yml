@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: tm_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: transport_manager_db
+      MYSQL_USER: tm_user
+      MYSQL_PASSWORD: tm_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  db_data:
